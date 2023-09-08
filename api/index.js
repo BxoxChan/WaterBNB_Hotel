@@ -6,11 +6,13 @@ import residenceRoute from "./routes/recidence.js";
 import { authroute } from "./routes/auth.js";
 import cookieParser from "cookie-parser";
 import { config } from "dotenv";
+import cors from "cors";
 
 config();
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors());
 
 mongoose
   .connect(process.env.MONGO_URI)
