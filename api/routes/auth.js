@@ -15,12 +15,16 @@ router.post("/register", async (req, res) => {
     const { username, email, password } = req.body;
     //all data are compulsory
     if (!(username && email && password)) {
-      res.status(400).json("All fileds are complusory");
+      res.json({
+        error: "All fileds are complusory",
+      });
     }
     //check if user already exist
     const user = await User.findOne({ email });
     if (user) {
-      res.json("user alredy exist please login");
+      res.json({
+        error: "user alredy exist please login",
+      });
     } else {
       const salt = await bcryptjs.genSalt(10);
       const hashPassword = await bcryptjs.hash(password, salt);
@@ -55,10 +59,21 @@ router.post("/login", async (req, res) => {
 
     //find User in DB
     const user = await User.findOne({ email });
+    if (!user) {
+      res.json({
+        error: "User Does not exist",
+      });
+    }
 
     //match password
 
     const matchPassword = await bcryptjs.compare(password, user.password);
+
+    if (!matchPassword) {
+      res.json({
+        error: "Incorrect Password",
+      });
+    }
 
     //response
     if (user && matchPassword) {
