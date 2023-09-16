@@ -4,6 +4,7 @@ import axios from 'axios';
 
 
 function Properties() {
+
     const [property,setProperty]=useState([]);
   useEffect(()=>{
     const fetchData=async()=>{
@@ -18,17 +19,20 @@ function Properties() {
     fetchData();
   },[])
   return (
-    <div className='min-h-screen mx-5 grid grid-cols-3 gap-5'>
+    <div className='min-h-screen mx-10 grid grid-cols-3 gap-5 '>
       {
           property.map((prop)=>{
             return(
-            <PropertCard
+            <PropertCard 
+             
              key={prop._id}
+             id={prop._id}
              name={prop.title} 
              address={prop.address}
              city={prop.city}
              img={prop.image}
              price={prop.price}
+             
             />
             )
           })

@@ -8,6 +8,12 @@ export default {
       },
       boxShadow: {
         shadowCust: "19px 21px 25px -17px rgba(0,0,0,0.25)",
+        shadowTwo: "2px 13px 25px -7px rgba(0,0,0,0.28)",
+      },
+      fontFamily: {
+        Montserrat: ["Montserrat", "sans-serif"],
+        Ubuntu: ["Ubuntu", "sans-serif"],
+        Raleway: ["Raleway", "sans-serif"],
       },
     },
   },
