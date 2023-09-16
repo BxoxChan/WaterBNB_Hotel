@@ -10,6 +10,10 @@ const Residency = new mongoose.Schema(
     country: { type: String, required: true },
     image: { type: String, required: true },
     facilities: { type: Array, required: true },
+    ownerDetails: {
+      name: { type: String },
+      contact: { type: String },
+    },
   },
   { timestamps: true }
 );
