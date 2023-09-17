@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState,useContext} from 'react'
 import { userRequest } from '../utils/requestMethods';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../context/UserContext';
 
 
 
 const Login = () => {
+    const {setUser}=useContext(UserContext);
     const [data,setData]=useState({
         email:'',
         password:''
@@ -21,6 +23,7 @@ const Login = () => {
          if(data.error){
             toast.error(data.error)
          }else{
+            setUser({email});
             setData({})
             navigate('/');
          }

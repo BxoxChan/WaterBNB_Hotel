@@ -6,10 +6,13 @@ import PropertyPage from './pages/PropertyPage'
 import { Register } from './pages/Register'
 import {Toaster} from 'react-hot-toast';
 import Login from './pages/Login'
+import { UserContextProvider } from '../context/UserContext'
+import ProfilePage from './pages/ProfilePage'
 
 const App = () => {
   return (
     <div className='font-Raleway'>
+      <UserContextProvider >
     <Toaster position="bottom-center" toastOptions={{duration:5000}}/>
       <Router>
       <Routes>
@@ -20,8 +23,10 @@ const App = () => {
         </Route>
         <Route path='/register' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/>
+        <Route path='/profile' element={<ProfilePage/>}/>
       </Routes>
       </Router>
+      </UserContextProvider>
       
     </div>
     
