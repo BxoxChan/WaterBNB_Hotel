@@ -17,13 +17,15 @@ const Navbar = () => {
     
         <div className='w-1/4 flex justify-center items-center'>
           {
-           (user)?
+           (user.userDetails !=null)?
             <Link to={"/profile"}>
               <button className='text-white bg-pink-500 p-2 px-4 text-xl rounded-md font-semibold pl-5'>Profile</button>
             </Link>
-          :(<Link to={"/register"}>
+          :(
+          <Link to={"/register"}>
               <button className='text-white bg-blue1 p-2 px-4 text-xl rounded-md font-semibold pl-5'>{(user)?user.email:"Register"}</button>
-          </Link>)
+          </Link>
+          )
           }
         </div>
     </>
