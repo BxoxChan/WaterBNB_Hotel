@@ -23,7 +23,12 @@ const Login = () => {
          if(data.error){
             toast.error(data.error)
          }else{
-            setUser({email});
+            setUser({
+                token:data.token,
+                email,
+                userDetails:data.user,
+            });
+            localStorage.setItem("auth-User",JSON.stringify(data.user));
             setData({})
             navigate('/');
          }
@@ -47,9 +52,8 @@ const Login = () => {
                 (e)=> setData({...data,password:e.target.value})} required/>
             </div>
             
-            
             <div className='flex justify-center'>
-            <button className='rounded bg-blue1 px-4 py-2'>Register</button>
+            <button className='rounded bg-blue1 px-4 py-2'>Login</button>
             </div>
         </form>
         <p>if already registerd,<span className='font-bold'>Login</span></p>
