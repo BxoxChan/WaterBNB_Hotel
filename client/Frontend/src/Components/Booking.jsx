@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {differenceInCalendarDays} from "date-fns"
+import { UserContext } from '../../context/UserContext';
 
 const Booking = (places) => {
+      const {user}=useContext(UserContext);
+
     const [guests,setGuests]=useState(1);
     const [phnumber,setPhnumber]=useState('');
-    const [userName,setUserName]=useState('');
+    const [userName,setUserName]=useState(user?user.userDetails.username:'');
     const [checkInDate,setcheckInDate]=useState(
         new Date().toISOString().slice(0,10)
     );
     const [checkOutDate,setcheckOutDate]=useState("")
-  const [numberOfNights, setNumberOfNights] = useState(0);
-
-    
+  const [numberOfNights, setNumberOfNights] = useState(0);    
     // const [bookingData,setBookingData]=useState({
     //     guests:1,
     //     phnumber:'',
