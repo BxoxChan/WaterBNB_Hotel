@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Home } from './pages/Home'
 import { Properties } from './pages/Properties'
 import { BrowserRouter as Router, Routes,Route } from 'react-router-dom'
@@ -6,7 +6,7 @@ import PropertyPage from './pages/PropertyPage'
 import { Register } from './pages/Register'
 import {Toaster} from 'react-hot-toast';
 import Login from './pages/Login'
-import { UserContextProvider } from '../context/UserContext'
+import { UserContext, UserContextProvider } from '../context/UserContext'
 import ProfilePage from './pages/ProfilePage'
 
 const App = () => {
