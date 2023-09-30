@@ -56,7 +56,7 @@ const Login = () => {
             <button className='rounded bg-blue1 px-4 py-2'>Login</button>
             </div>
         </form>
-        <p>if already registerd,<span className='font-bold'>Login</span></p>
+        <p>Not Registered,<span className='font-bold'>Register</span></p>
        </div>
     </div>
   )
