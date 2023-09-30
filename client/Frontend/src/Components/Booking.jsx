@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
 import {differenceInCalendarDays} from "date-fns"
 import { UserContext } from '../../context/UserContext';
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const Booking = (places) => {
       const {user}=useContext(UserContext);
-
+       const navigate=useNavigate();
     const [guests,setGuests]=useState(1);
     const [phnumber,setPhnumber]=useState('');
     const [userName,setUserName]=useState(user?user.userDetails.username:'');
@@ -38,6 +40,11 @@ const Booking = (places) => {
         });
     }
     addBooking();
+   }
+
+   const notloginUser=()=>{
+toast.error('Please Login for Booking');
+    navigate('/login')
    }
   return (
     <div className='mx-15  px-10 rounded-md shadow-shadowTwo'>
@@ -83,7 +90,7 @@ const Booking = (places) => {
             </div>
 
             <div className='flex justify-center'>
-          <button type='submit' className='bg-pink-400 text-white p-4 rounded-md font-Montserrat font-bold my-5 w-1/2'>
+          <button type='submit' onClick={user?bookingHandler:notloginUser}  className='bg-pink-400 text-white p-4 rounded-md font-Montserrat font-bold my-5 w-1/2'>
             Book Now{" "}
           {
               numberOfNights>0?`(₹ ${numberOfNights * guests *places.price})`:" "
