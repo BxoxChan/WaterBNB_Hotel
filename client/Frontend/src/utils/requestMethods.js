@@ -9,5 +9,8 @@ const publicRequest = axios.create({
 const userRequest = axios.create({
   baseURL: Base_URL + "auth",
 });
+const bookingRequest = axios.create({
+  baseURL: Base_URL + "booking",
+});
 
-export { publicRequest, userRequest };
+export { publicRequest, userRequest, bookingRequest };
