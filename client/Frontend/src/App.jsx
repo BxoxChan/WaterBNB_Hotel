@@ -23,7 +23,7 @@ const App = () => {
         </Route>
         <Route path='/register' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/>
-        <Route path='/profile' element={<ProfilePage/>}/>
+        <Route path='/profile/:subpage?' element={<ProfilePage/>}/>
       </Routes>
       </Router>
       </UserContextProvider>

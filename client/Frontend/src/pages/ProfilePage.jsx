@@ -1,45 +1,39 @@
-import {React,useContext} from 'react';
-import { UserContext } from '../../context/UserContext';
+import {React} from 'react';
 import { Header } from '../Components/Header';
-import { Footer } from '../Components/Footer';
-import { Link, useNavigate } from 'react-router-dom';
-import { userRequest } from '../utils/requestMethods';
-import axios from 'axios';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
+import ProfileComponent from '../Components/ProfileComponent';
+import PermIdentityIcon from '@mui/icons-material/PermIdentity';
+import ListIcon from '@mui/icons-material/List';
+import { Link, useParams } from 'react-router-dom';
+import MyBookings from '../Components/MyBookings';
 
 
 const ProfilePage = () => {
-  
-    const{user,setUser}=useContext(UserContext);
-    const navigate=useNavigate();
-    const logoutHandler=()=>{
-      try{
-           userRequest.post("logout")
-            setUser("");
-            localStorage.removeItem("auth-User")
-            navigate("/")
-      }catch(e){
-         console.log(e);
-      }
-    }
+  let {subpage}=useParams();
+  console.log(subpage);
+  if(subpage===undefined){
+    subpage='profile';
+    console.log(subpage);
+  }
+  function linkclass(type=null){
+   let classes = 'flex items-center justify-center border w-40 rounded-md ';
+   if(type===subpage){
+    classes += 'bg-pink-400  text-white';
+   }
+   return classes;
+  }
   return (
     <div>
         <Header/>
-        <div className='h-screen '>
-          <div className='flex flex-col items-center border-black border-2 '>
-          <div className='text-6xl'>
-            <AccountCircleIcon className='text-pink-400' sx={{fontSize:"10rem"}}/>
-          </div>
-          <div className=''>
-          <p>Logged in as <span>{user.userDetails.username.toUpperCase()}</span> ,<span>({user.email})</span></p>
-          
-          </div>
-          </div>
-          <div className='flex justify-center mt-5'>
-            <button onClick={logoutHandler} className='bg-red-400 text-white rounded-sm p-2'>Logout</button>
-          </div>
-        </div>
-        <Footer/>
+        {/* profile Nav */}
+        <nav className='w-fit mx-auto sm:h-10 flex justify-between gap-10 my-14 '>
+            <Link to={'/profile'} className={linkclass('profile')}><span className='mr-5'><PermIdentityIcon/></span>Profile</Link>
+            <Link  to={'/profile/myBookings'} className={linkclass('myBookings')}><span className='mr-5'><ListIcon/></span>My Bookings</Link>
+        </nav>
+        {
+          subpage==='profile'?<ProfileComponent/>:<MyBookings/>
+        
+        }
     </div>
   )
 }
