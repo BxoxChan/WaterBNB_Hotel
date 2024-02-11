@@ -1,7 +1,9 @@
 import React from 'react'
 import image1 from "../intro.jpg"
+import { useNavigate } from 'react-router-dom'
 
 export const Intro = () => {
+  const navigate=useNavigate();
   return (
     <div className="overflow-x-hidden ">
     <div className='relative'>
@@ -17,7 +19,7 @@ export const Intro = () => {
        <p className='w-1/2 mt-10'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem nobis reprehenderit quibusdam animi expedita nostrum aperiam esse, incidunt omnis laudantium modi nesciunt facere vero ad et repellat illo, perferendis ipsa.</p>
 
        <div className='mt-10'>
-        <button className='text-white bg-blue-600 p-2 px-4 text-2xl rounded-md font-semibold'>View Property</button>
+        <button className='text-white bg-blue-600 p-2 px-4 text-2xl rounded-md font-semibold' onClick={()=>{navigate('/properties')}}>View Property</button>
        </div>
 
     </div>
