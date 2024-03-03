@@ -1,17 +1,42 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import PropertyCardImg from './PropertyComponent/PropertyCardImg';
+
 
 const Galary = () => {
+  let i=0;
+  const [property,setProperty]=useState([]);
+  useEffect(()=>{
+    const fetchData=async()=>{
+        const data= await axios.get("http://localhost:5000/app/residence/Residence").then((data)=>{
+            const properties=data.data;
+          // console.log(properties);
+            setProperty(properties);
+        }).catch((e)=>{
+            console.log(e);
+        })
+    }
+    fetchData();
+  },[])
+  const someproperties = property?.slice(0,6);
+ // console.log(someproperties);
   return (
     <div className=''>
-        <header className='text-blue1 text-4xl font-bold flex justify-center mt-10'> Galary</header>
-        <div className='grid grid-cols-3 gap-2 my-5 mx-10'>
-        <img src="https://media.istockphoto.com/id/1150545984/photo/upscale-modern-mansion-with-pool.webp?b=1&s=170667a&w=0&k=20&c=05kzIqoRg3euOo-laKp06wF5fF4bqn901NB4i_zeB2M=" alt="" />
-        <img src="https://media.istockphoto.com/id/1150545984/photo/upscale-modern-mansion-with-pool.webp?b=1&s=170667a&w=0&k=20&c=05kzIqoRg3euOo-laKp06wF5fF4bqn901NB4i_zeB2M=" alt="" />
-        <img src="https://media.istockphoto.com/id/1150545984/photo/upscale-modern-mansion-with-pool.webp?b=1&s=170667a&w=0&k=20&c=05kzIqoRg3euOo-laKp06wF5fF4bqn901NB4i_zeB2M=" alt="" />
-        <img src="https://media.istockphoto.com/id/1150545984/photo/upscale-modern-mansion-with-pool.webp?b=1&s=170667a&w=0&k=20&c=05kzIqoRg3euOo-laKp06wF5fF4bqn901NB4i_zeB2M=" alt="" />
-        <img src="https://media.istockphoto.com/id/1150545984/photo/upscale-modern-mansion-with-pool.webp?b=1&s=170667a&w=0&k=20&c=05kzIqoRg3euOo-laKp06wF5fF4bqn901NB4i_zeB2M=" alt="" />
-        <img src="https://media.istockphoto.com/id/1150545984/photo/upscale-modern-mansion-with-pool.webp?b=1&s=170667a&w=0&k=20&c=05kzIqoRg3euOo-laKp06wF5fF4bqn901NB4i_zeB2M=" alt="" />
-        </div>
+        <header className='text-blue1 text-4xl font-bold flex justify-center my-10'>Galary</header>
+        
+
+        <div className='grid grid-cols-3  gap-5  h-fit justify-items-center bg-gray-100'>
+         {
+          someproperties?.map((prop)=>(
+            <PropertyCardImg 
+             key={prop._id}
+             name={prop.title} 
+             img={prop.image}
+            />
+          ))}
+          
+         </div>
+         
     </div>
   )
 }
