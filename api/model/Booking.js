@@ -7,8 +7,8 @@ const BookingSchema = new mongoose.Schema({
     required: true,
   },
   place: {
-    type: mongoose.Schema.ObjectId,
-    ref: "Place",
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "residency",
     required: true,
   },
   checkIn: {
