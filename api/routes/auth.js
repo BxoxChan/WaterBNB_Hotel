@@ -78,25 +78,43 @@ router.post("/login", async (req, res) => {
     //response
     if (user && matchPassword) {
       const token = jwt.sign(
-        { id: user._id, isAdmin: user.isAdmin },
+        { id: user._id, isAdmin: user.isAdmin, email: user.email },
         process.env.JWT_SEC,
         {
           expiresIn: "3d",
         }
+        // (err, token) => {
+        //   if (err) throw err;
+        //   res.cookie("token", token);
+        //   console.log("token created");
+        // }
       );
-      user.token = token;
-      user.password = undefined;
+      // user.token = token;
+      // user.password = undefined;
 
       //cookie section
       const options = {
+        path: "/",
         expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
         httpOnly: true,
+        secure: false, // Only send over HTTPS
+        sameSite: "none", // Allow cross-origin requests
+        // sameSite: "lax", // Allow cross-origin requests
       };
-      res.status(200).cookie("token", token, options).json({
-        success: true,
-        token,
-        user,
-      });
+
+      res.cookie("token", token, options);
+
+      return (
+        res
+          .status(200)
+          //.cookie("token", token, options)
+          //.header("Autherisation", token)
+          .json({
+            success: true,
+            token,
+            user,
+          })
+      );
     }
   } catch (error) {
     console.log(error);
@@ -114,9 +132,12 @@ router.post("/login", async (req, res) => {
 // });
 
 router.post("/logout", (req, res) => {
+  //res.clearCookie("token");
   res.cookie("token", null, {
     httpOnly: true,
     expires: new Date(Date.now()),
+    secure: true, // Only send over HTTPS
+    sameSite: "none", // Allow cross-origin requests
   });
   res.status(200).json({ success: true, message: "Successfully loged out" });
 });
