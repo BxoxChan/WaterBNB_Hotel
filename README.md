@@ -22,7 +22,7 @@ Welcome to our Hotel/Rooms Accommodation Web Application **WaterBNB** , powered 
 
 **Client:** React, Context API, TailwindCSS
 
-**Server:** Node, Express
+**Server:** Node, Express , MongoDB
 
 ## Image Galary
 <img width="960" alt="Screenshot 2024-03-03 194011" src="https://github.com/BxoxChan/WaterBNB_Hotel/assets/164135708/23bec37d-fa13-4dce-b049-e12c122b195e">
