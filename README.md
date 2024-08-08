@@ -1,7 +1,10 @@
 # WaterBNB
 Welcome to our Hotel/Rooms Accommodation Web Application **WaterBNB** , powered by the MERN (MongoDB, Express.js, React.js, Node.js) stack. Our platform offers a seamless and efficient way to discover and book accommodations tailored to your preferences. With the power of MERN, we've created a robust and dynamic solution that combines a user-friendly interface with powerful backend functionality.
 
-<img width="500" alt="Screenshot 2024-03-03 194000" src="https://github.com/BxoxChan/WaterBNB_Hotel/assets/164135708/a00380bf-6315-4aaf-88fe-0f889c44f290">
+
+
+https://github.com/user-attachments/assets/64fc7868-e05c-4846-803c-e71f31fee843
+
 
 ## Features
 1. Visually apealing UI .
